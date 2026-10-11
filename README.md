@@ -38,23 +38,23 @@ Navigate to your workspace and install dependencies for both backend and fronten
     REDIS_PORT=6379
 
 ### 3. Start Database & Cache Containers (Docker)
-# Start MySQL 8.0
+#### Start MySQL 8.0
     docker run -d --name warehouse-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=warehouse_system mysql:8.0
-# Start Redis 7
+#### Start Redis 7
     docker run -d --name warehouse-redis -p 6379:6379 redis:7-alpine
 
 
 ### 4. Run Database Migrations & Seeding
-# For Window
+#### For Window
     Get-Content schema.sql | docker exec -i warehouse-mysql mysql -u root -ppassword warehouse_system
     npm run seed # For Seeding
 
 ### 5. Run the Application
-# Start Backend API & BullMQ Worker:
+##### Start Backend API & BullMQ Worker:
     cd backend
     npm run dev
 
-# Start Frontend Dashboard (in a separate terminal):
+##### Start Frontend Dashboard (in a separate terminal):
     cd ../frontend
     npm run dev
 
@@ -72,7 +72,7 @@ Navigate to your workspace and install dependencies for both backend and fronten
 
 
 # Project Summary
--> Initially, I considered using MySQL row-level locking (SELECT ... FOR UPDATE) for bookings. However, due to concurrency bottlenecks and potential connection pool exhaustion under heavy traffic, I integrated Redis to handle high-throughput reservation caching and distributed locks.
+Initially, I considered using MySQL row-level locking (SELECT ... FOR UPDATE) for bookings. However, due to concurrency bottlenecks and potential connection pool exhaustion under heavy traffic, I integrated Redis to handle high-throughput reservation caching and distributed locks.
 
 ## 1. Approach
 The architecture implements a Dual-Layer Concurrency Model:
