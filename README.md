@@ -68,7 +68,6 @@ Navigate to your workspace and install dependencies for both backend and fronten
     cd backend
     npm install -g pm2
     pm2 start src/app.js --name "flash-sale-api"
-    pm2 start src/workerProcess.js --name "flash-sale-worker"
 
 
 # Project Summary
